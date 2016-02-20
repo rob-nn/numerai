@@ -10,7 +10,7 @@ def get_data_set():
         spamreader = csv.reader(csvfile)
         for row in spamreader:
             if not first_line: #Skip first line
-                data_set_item = np.array(row[0:14]).astype(np.int)
+                data_set_item = np.int_(row[0:14]).astype(np.int)
                 category = row[14]
                 try:
                     #if KeyError add a new category
@@ -19,12 +19,12 @@ def get_data_set():
                     categories[category] = next_cat_index
                     next_cat_index += 1
                     cat_index = categories[category]
-                data_set_item = np.append(data_set_item, np.array([cat_index]))
-                data_set_item = np.append(data_set_item, np.array(row[15:]).astype(np.int))
+                data_set_item = np.append(data_set_item, np.int_([cat_index]))
+                data_set_item = np.append(data_set_item, np.int_(row[15:]).astype(np.int))
                 data_set.append(data_set_item)
             else:
                 first_line = False 
-    data_set = np.array(data_set)
+    data_set = np.int_(data_set)
     return (data_set, categories)
 
 if __name__ == '__main__':
